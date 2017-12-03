@@ -1,7 +1,8 @@
+from __future__ import print_function
 import argparse
 import sys
-import numpy as np
 import itertools
+from PIL import Image, ImageFont, ImageDraw
 
 
 parser = argparse.ArgumentParser(description='Calculate minimal partition for pythagorean triple')
@@ -143,7 +144,6 @@ print("Result Parts:")
 for re in res:
     print(str(re))
 
-from PIL import Image, ImageFont, ImageDraw
 
 scale=1000
 draw_y = (y/z) * scale
