@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import division
 import argparse
 import sys
 import itertools
@@ -147,11 +148,9 @@ for re in res:
 
 scale=1000
 draw_y = (y/z) * scale
-print(x)
 draw_x = (x/z) * scale
 
 real_scale = scale/z
-
 
 im = Image.new('RGB', (scale,scale), (255,0,0))
 dr = ImageDraw.Draw(im)
