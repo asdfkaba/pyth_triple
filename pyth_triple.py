@@ -195,7 +195,7 @@ for i in range(2,len(res)):
     else:
         square_start = (square_start[0], square_start[1] + h if w > h else w)
 
-dr.text((30,750), str(x)+"^2 +" +str(y) + "^2 = "+str(z)+"^2", font=fnt, fill=(255,255,255,128))
+dr.text((30,750), str(x)+"^2 + " +str(y) + "^2 = "+str(z)+"^2", font=fnt, fill=(255,255,255,128))
 dr.text((30,850), "pieces: "+str(len(res)), font=fnt, fill=(255,255,255,128))
 
 
