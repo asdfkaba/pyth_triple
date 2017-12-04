@@ -43,7 +43,9 @@ def is_finished(rects, val):
     # is sum(area(rect)) correct?
     tmp = 0
     for rect in rects:
+            print(rect)
             tmp+=rect.width*rect.height
+    print(str(val) + 'vs' + str(tmp))
     return val==tmp
 
 def build_split_up(rest_of_c, rest_of_d):
@@ -53,45 +55,53 @@ def build_split_up(rest_of_c, rest_of_d):
     second = rest_of_c
     i = 0
     while(not is_finished(solution, x*y)):
-        if i > 4:
+        if i > 6:
             break
+        if i < 3:
+            print('##')
+            print(rest_of_c)
+            print(second)
+            print(rest_of_d)
+            print('##')
         i += 1
-        if rest_of_c.width<rest_of_d.width:
-            if rest_of_c.width + second.width < rest_of_d.width:
-                candidate_width= rest_of_c.width
-                second_width= second.width
-            else:
-                candidate_width = rest_of_c.width
-                second_width = rest_of_d.width-candidate_width
-            if rest_of_c.height < rest_of_d.height:
-                candidate_height = rest_of_c.height
-                second_height = candidate.height
-                rest_of_d= Rect('dummy', rest_of_d.width, rest_of_d.height-rest_of_c.height)
-                rest_of_c= Rect('dummy', rest_of_c.width-candidate_width, rest_of_c.height)
-                second= Rect('dummy', second.width-second_width, second.height)
-            else:
-                candidate_height = rest_of_d.height
-                second_height = rest_of_d.height
-                rest_of_d= Rect('', rest_of_d.width-rest_of_c.width+second_width, rest_of_d.height)
-                rest_of_c= Rect('', rest_of_c.width, rest_of_c.height-candidate_height)
-                second= Rect('', second.width, second.height-second_height)
-        else:
+        if rest_of_c.width<rest_of_d.width and second.width<rest_of_d.width:
+            print(1, end='')
+            candidate_width= rest_of_c.width
+            second_width= second.width
             if rest_of_c.height + second.height < rest_of_d.height:
+                print(1, end='')
                 candidate_height = rest_of_c.height
-                second_height = rest_of_c.height
+                second_height = second.height
+                rest_of_d= Rect('dummy', rest_of_d.width, rest_of_d.height-rest_of_c.height)
             else:
+                print(2, end='')
+                candidate_height = rest_of_c.height
+                second_height = rest_of_d.height-candidate_height
+                rest_of_d= Rect('dummy', rest_of_d.width-candidate_width, rest_of_d.height)
+            rest_of_c= Rect('dummy', rest_of_c.width, rest_of_c.height-candidate_height)
+            second= Rect('dummy', second.width, second.height-second_height)
+        else:
+            print(2, end='')
+            if rest_of_c.height + second.height < rest_of_d.height:
+                print(1, end='')
+                candidate_height = rest_of_c.height
+                second_height = second.height
+            else:
+                print(2, end='')
                 candidate_height = rest_of_c.height
                 second_height = rest_of_d.height-candidate_height
             candidate_width = rest_of_d.width
+            second_width = rest_of_d.width
             rest_of_d= Rect('', rest_of_d.width, rest_of_d.height-rest_of_c.height-second.height)
             rest_of_c= Rect('', rest_of_c.width-candidate_width, rest_of_c.height)
+            second= Rect('', second.width-candidate_width, second.height)
+        print('')
         candidate = Rect('Part of D from splitted Cs in Picture', candidate_width, candidate_height)
-        second = Rect('Part of D from splitted Cs in Picture', second_width, second_height)
-        print(candidate)
-        print(second)
-        if candidate.width > 0 and candidate_height > 0:
+        second_candidate = Rect('Part of D from splitted Cs in Picture', second_width, second_height)
+        if candidate.width > 0 and candidate.height > 0:
             solution.append(candidate)
-        solution.append(second)
+        if second_candidate.width > 0 and second_candidate.height > 0:
+            solution.append(second_candidate)
     return solution
 
 
@@ -104,7 +114,7 @@ def calc(triple):
 
     # missing pieces(2 equal forms with width m=z-x and height n=z-y (PICTURE: C)) which we have to split up to fill rest_of_d.size n^2 with n = x-(z-y))
     # together with rect angle form with minimal possible amount of pieces
-    c = Rect('dummy', triple.z-triple.y, triple.z-triple.x)
+    c = Rect('dummy', triple.z-triple.x, triple.z-triple.y)
     d_length = triple.x-(triple.z-triple.y)
     d = Rect('dummy', d_length, d_length)
 
@@ -181,31 +191,34 @@ dr.rectangle(((scale-(scale-draw_y),0),(scale,draw_x)), fill="green")
 up_start = (0,0)
 down_start = (draw_y,draw_x)
 square_start = (scale-draw_x,scale-draw_y)
+count = 0
 for i in range(2,len(res)):
     w = real_scale*res[i].height
     h = real_scale*res[i].width
-    if i % 2 == 0:
-        dr.rectangle(((up_start[0], up_start[1]),(up_start[0]+w if w > h else h, up_start[1]+ h if w > h else w)),  outline='white')
-        if (1 + up_start[0] + w if w > h else h) < (scale-draw_x):
-            up_start = (up_start[0] + w if w > h else h, up_start[1] + 0)
+    print(count)
+    print((z-x)*(z-y))
+    if i % 2 == 0 and count < (z-x)*(z-y):
+        dr.rectangle(((up_start[0], up_start[1]),(up_start[0]+ (w if w > h else h), up_start[1]+ (h if w > h else w))),  outline='white')
+        if (1 + up_start[0] + (w if w > h else h)) < (scale-draw_x):
+            up_start = (up_start[0] + (w if w > h else h), up_start[1] + 0)
         else:
-            up_start = (up_start[0], up_start[1] + h if w > h else w)
+            up_start = (up_start[0], up_start[1] + (h if w > h else w))
+        count += res[i].width*res[i].height
     else:
-        dr.rectangle(((down_start[0],down_start[1]),(down_start[0] + h if w > h else w, down_start[1] +  w if w > h else h)), outline='white')
-        if (1 + down_start[1] + w if w > h else h) < (scale):
-            down_start = (down_start[0], down_start[1] + w if w > h else h)
+        dr.rectangle(((down_start[0],down_start[1]),(down_start[0] + (h if w > h else w), down_start[1] +  (w if w > h else h))), outline='white')
+        if (1 + down_start[1] + (w if w > h else h)) < (scale):
+           down_start = (down_start[0], down_start[1] + (w if w > h else h))
         else:
-            down_start = (down_start[0] + h if w > h else w, down_start[1])
-    if (-1 + square_start[0] + w if w > h else h) > (draw_y):
-        old = square_start
-        square_start = (square_start[0] - w if w > h else h, square_start[1] + h if w > h else w)
-    if (-1 + square_start[1] + h if w > h else w) > (draw_x):
+           down_start = (down_start[0] + (h if w > h else w), down_start[1])
+    if (-1 + square_start[1] + (h if w > h else w)) > (draw_x):
         square_start = old
+    elif (1 + square_start[1] + (h if w > h else w)) > (draw_x):
+        old = (square_start[0]+res[i-1].width*real_scale, square_start[1]-res[i-1].height*real_scale)
 
-    dr.rectangle(((square_start[0],square_start[1]),(square_start[0]+w if w > h else h, square_start[1]+ h if w > h else w)), outline='white')
+    dr.rectangle(((square_start[0],square_start[1]),(square_start[0]+ (w if w > h else h), square_start[1]+ (h if w > h else w))), outline='white')
 
     if (1 + square_start[0] + w if w > h else h) < (draw_y):
-        square_start = (square_start[0] + w if w > h else h, square_start[1])
+        square_start = (square_start[0], square_start[1]+ w if w < h else h)
     else:
         square_start = (square_start[0], square_start[1] + h if w > h else w)
 
