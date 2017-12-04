@@ -50,33 +50,48 @@ def build_split_up(rest_of_c, rest_of_d):
 
     solution = []
     x,y = rest_of_d.width, rest_of_d.height
-
+    second = rest_of_c
+    i = 0
     while(not is_finished(solution, x*y)):
-
+        if i > 4:
+            break
+        i += 1
         if rest_of_c.width<rest_of_d.width:
-            if rest_of_c.width * 2 < rest_of_d.width:
+            if rest_of_c.width + second.width < rest_of_d.width:
                 candidate_width= rest_of_c.width
+                second_width= second.width
             else:
-                candidate_width = rest_of_d.width/2
+                candidate_width = rest_of_c.width
+                second_width = rest_of_d.width-candidate_width
             if rest_of_c.height < rest_of_d.height:
                 candidate_height = rest_of_c.height
+                second_height = candidate.height
                 rest_of_d= Rect('dummy', rest_of_d.width, rest_of_d.height-rest_of_c.height)
                 rest_of_c= Rect('dummy', rest_of_c.width-candidate_width, rest_of_c.height)
+                second= Rect('dummy', second.width-second_width, second.height)
             else:
                 candidate_height = rest_of_d.height
-                rest_of_d= Rect('', rest_of_d.width-rest_of_c.width*2, rest_of_d.height)
+                second_height = rest_of_d.height
+                rest_of_d= Rect('', rest_of_d.width-rest_of_c.width+second_width, rest_of_d.height)
                 rest_of_c= Rect('', rest_of_c.width, rest_of_c.height-candidate_height)
+                second= Rect('', second.width, second.height-second_height)
         else:
-            if rest_of_c.height * 2 < rest_of_d.height:
+            if rest_of_c.height + second.height < rest_of_d.height:
                 candidate_height = rest_of_c.height
+                second_height = rest_of_c.height
             else:
-                candidate_height = rest_of_d.height/2
+                candidate_height = rest_of_c.height
+                second_height = rest_of_d.height-candidate_height
             candidate_width = rest_of_d.width
-            rest_of_d= Rect('', rest_of_d.width, rest_of_d.height-rest_of_c.height*2)
+            rest_of_d= Rect('', rest_of_d.width, rest_of_d.height-rest_of_c.height-second.height)
             rest_of_c= Rect('', rest_of_c.width-candidate_width, rest_of_c.height)
         candidate = Rect('Part of D from splitted Cs in Picture', candidate_width, candidate_height)
-        solution.append(candidate)
-        solution.append(candidate)
+        second = Rect('Part of D from splitted Cs in Picture', second_width, second_height)
+        print(candidate)
+        print(second)
+        if candidate.width > 0 and candidate_height > 0:
+            solution.append(candidate)
+        solution.append(second)
     return solution
 
 
