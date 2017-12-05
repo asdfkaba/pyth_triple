@@ -45,6 +45,7 @@ def is_finished(rects, val):
     for rect in rects:
             print(rect)
             tmp+=rect.width*rect.height
+    print(str(val) + 'vs' + str(tmp))
     return val==tmp
 
 def build_split_up(rest_of_c, rest_of_d):
@@ -52,30 +53,41 @@ def build_split_up(rest_of_c, rest_of_d):
     solution = []
     x,y = rest_of_d.width, rest_of_d.height
     second = rest_of_c
+    i = 0
     while(not is_finished(solution, x*y)):
-
+        if i > 6:
+            break
+        if i < 3:
+            print('##')
+            print(rest_of_c)
+            print(second)
+            print(rest_of_d)
+            print('##')
+        i += 1
         if rest_of_c.width<rest_of_d.width and second.width<rest_of_d.width:
+            print(1, end='')
             candidate_width= rest_of_c.width
             second_width= second.width
             if rest_of_c.height + second.height < rest_of_d.height:
+                print(1, end='')
                 candidate_height = rest_of_c.height
                 second_height = second.height
                 rest_of_d= Rect('dummy', rest_of_d.width, rest_of_d.height-rest_of_c.height)
-            elif rest_of_c.height > rest_of_d.height:
-                candidate_height = rest_of_d.height
-                second_height = rest_of_d.height
-                rest_of_d= Rect('dummy', rest_of_d.width-candidate_width-second_width, rest_of_d.height)
             else:
+                print(2, end='')
                 candidate_height = rest_of_c.height
                 second_height = rest_of_d.height-candidate_height
                 rest_of_d= Rect('dummy', rest_of_d.width-candidate_width, rest_of_d.height)
             rest_of_c= Rect('dummy', rest_of_c.width, rest_of_c.height-candidate_height)
             second= Rect('dummy', second.width, second.height-second_height)
         else:
+            print(2, end='')
             if rest_of_c.height + second.height < rest_of_d.height:
+                print(1, end='')
                 candidate_height = rest_of_c.height
                 second_height = second.height
             else:
+                print(2, end='')
                 candidate_height = rest_of_c.height
                 second_height = rest_of_d.height-candidate_height
             candidate_width = rest_of_d.width
@@ -83,6 +95,7 @@ def build_split_up(rest_of_c, rest_of_d):
             rest_of_d= Rect('', rest_of_d.width, rest_of_d.height-rest_of_c.height-second.height)
             rest_of_c= Rect('', rest_of_c.width-candidate_width, rest_of_c.height)
             second= Rect('', second.width-candidate_width, second.height)
+        print('')
         candidate = Rect('Part of D from splitted Cs in Picture', candidate_width, candidate_height)
         second_candidate = Rect('Part of D from splitted Cs in Picture', second_width, second_height)
         if candidate.width > 0 and candidate.height > 0:
@@ -179,10 +192,11 @@ up_start = (0,0)
 down_start = (draw_y,draw_x)
 square_start = (scale-draw_x,scale-draw_y)
 count = 0
-old = None
-line_finished=False
 for i in range(2,len(res)):
     w = real_scale*res[i].height
+    h = real_scale*res[i].width
+    print(count)
+    print((z-x)*(z-y))
     if i % 2 == 0 and count < (z-x)*(z-y):
         dr.rectangle(((up_start[0], up_start[1]),(up_start[0]+ (w if w > h else h), up_start[1]+ (h if w > h else w))),  outline='white')
         if (1 + up_start[0] + (w if w > h else h)) < (scale-draw_x):
@@ -191,31 +205,22 @@ for i in range(2,len(res)):
             up_start = (up_start[0], up_start[1] + (h if w > h else w))
         count += res[i].width*res[i].height
     else:
-        orientation = -1 + down_start[0] + (w if w > h else h) > scale
-        if not orientation and i < len(res)-1:
-            orientation = 1 + down_start[1] + (w if w > h else h) > scale
-        dr.rectangle(((down_start[0],down_start[1]),(down_start[0] + ((h if w > h else w) if orientation else (w if w > h else h)), down_start[1] +  ((w if w > h else h) if orientation else (h if w >  h else w)))), outline='white')
+        dr.rectangle(((down_start[0],down_start[1]),(down_start[0] + (h if w > h else w), down_start[1] +  (w if w > h else h))), outline='white')
         if (1 + down_start[1] + (w if w > h else h)) < (scale):
-           down_start = (down_start[0], down_start[1] + ((w if w > h else h) if orientation else (h if w > h else w)))
+           down_start = (down_start[0], down_start[1] + (w if w > h else h))
         else:
-           down_start = (down_start[0] + ((h if w > h else w) if orientation else (w if w > h else h)), down_start[1])
-
+           down_start = (down_start[0] + (h if w > h else w), down_start[1])
     if (-1 + square_start[1] + (h if w > h else w)) > (draw_x):
-        if old is not None:
-            square_start = old
-    elif 1 + square_start[0] + (w if w > h else h) < draw_y and 1 + square_start[1] + (h if w > h else w) < draw_x:
-        old = (square_start[0] + (w if w > h else h), square_start[1])
+        square_start = old
+    elif (1 + square_start[1] + (h if w > h else w)) > (draw_x):
+        old = (square_start[0]+res[i-1].width*real_scale, square_start[1]-res[i-1].height*real_scale)
 
-    dr.rectangle(((square_start[0],square_start[1]),(square_start[0]+ h, square_start[1]+ w)), outline='white')
+    dr.rectangle(((square_start[0],square_start[1]),(square_start[0]+ (w if w > h else h), square_start[1]+ (h if w > h else w))), outline='white')
 
-    if abs(square_start[0] + (w if w > h else h)-draw_y) < 2:
-        print("HA")
-        square_start = (square_start[0], square_start[1]+ w)
-    elif abs(square_start[0] + (w if w > h else h)-draw_y) > 2 and abs(square_start[1] + (h if w > h else w)-draw_x) > 2:
-        print("HO")
-        square_start = (square_start[0], square_start[1]+ w)
+    if (1 + square_start[0] + w if w > h else h) < (draw_y):
+        square_start = (square_start[0], square_start[1]+ w if w < h else h)
     else:
-        square_start = (square_start[0]+h , square_start[1])
+        square_start = (square_start[0], square_start[1] + h if w > h else w)
 
 dr.text((30,750), str(x)+"^2 + " +str(y) + "^2 = "+str(z)+"^2", font=fnt, fill=(255,255,255,128))
 dr.text((30,850), "pieces: "+str(len(res)), font=fnt, fill=(255,255,255,128))
