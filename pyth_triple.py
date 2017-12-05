@@ -183,6 +183,8 @@ old = None
 line_finished=False
 for i in range(2,len(res)):
     w = real_scale*res[i].height
+    h = real_scale*res[i].width
+    print()
     if i % 2 == 0 and count < (z-x)*(z-y):
         dr.rectangle(((up_start[0], up_start[1]),(up_start[0]+ (w if w > h else h), up_start[1]+ (h if w > h else w))),  outline='white')
         if (1 + up_start[0] + (w if w > h else h)) < (scale-draw_x):
