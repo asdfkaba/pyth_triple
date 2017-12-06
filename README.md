@@ -8,4 +8,4 @@ requirements:
 
 v1 vs v2:
 
-<img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples_v1/39_80_89_triple.png" width="450" hspace="20"><img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/39_80_89_triple.png" width="450" hspace="20">
+<img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples_v1/39_80_89_triple.png" width="420" hspace="20"><img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/39_80_89_triple.png" width="420" hspace="20">
