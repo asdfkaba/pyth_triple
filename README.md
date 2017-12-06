@@ -5,4 +5,5 @@ usage `python pyth_triple.py x y z`
 requirements:
  - PIL
 
-<img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/8_15_17_triple.png" width="600">
+v1 vs v2:
+<img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples_v1/39_80_89_triple.png" width="400" hspace="20"><img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/39_80_89_triple.png" width="400" hspace="20">
