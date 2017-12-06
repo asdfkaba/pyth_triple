@@ -3,7 +3,6 @@ import random
 from PIL import Image, ImageFont, ImageDraw
 
 def draw(size, res, x, y, z):
-    print("YOOOO")
     scale=size
     draw_y = (y/z) * scale
     draw_x = (x/z) * scale
