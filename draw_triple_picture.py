@@ -6,8 +6,7 @@ def draw(size, res, x, y, z):
     scale=size
     draw_y = (y/z) * scale
     draw_x = (x/z) * scale
-
-    real_scale = scale/z
+    scale_factor = scale/z
 
     im = Image.new('RGB', (scale,scale), (255,0,0))
     dr = ImageDraw.Draw(im)
@@ -17,8 +16,10 @@ def draw(size, res, x, y, z):
         levels = range(32,256,32)
         return tuple(random.choice(levels) for _ in range(3))
 
+    # draw y^2
     dr.rectangle(((0,scale),(draw_y,scale-draw_y)), fill='brown' , outline='black')
 
+    # draw rectlinear polygon in top right corner
     dr.rectangle(((scale-draw_x,scale-draw_y),(scale,0)), fill="green")
     dr.rectangle(((scale-(scale-draw_y),0),(scale,draw_x)), fill="green")
 
@@ -30,8 +31,8 @@ def draw(size, res, x, y, z):
     old = None
     col_finished = False
     for i in range(2,len(res)):
-        height = real_scale*res[i].height
-        width = real_scale*res[i].width
+        height = scale_factor*res[i].height
+        width = scale_factor*res[i].width
         long_site = height if height > width else width
         short_site = width if height > width else height
         color = get_color()

@@ -5,16 +5,6 @@ import sys
 import itertools
 from draw_triple_picture import draw
 
-parser = argparse.ArgumentParser(description='Calculate minimal partition for pythagorean triple')
-parser.add_argument('x', metavar='x', type=int, nargs='+',
-                                   help='x^2 + y^2 = z^2')
-parser.add_argument('y', metavar='y', type=int, nargs='+',
-                                   help='x^2 + y^2 = z^2')
-parser.add_argument('z', metavar='z', type=int, nargs='+',
-                                   help='x^2 + y^2 = z^2')
-
-args = parser.parse_args()
-
 class Triple:
     def __init__(self, x, y, z):
         self.x = x
@@ -42,17 +32,14 @@ def is_finished(rects, val):
     # is sum(area(rect)) correct?
     tmp = 0
     for rect in rects:
-            print(rect)
             tmp+=rect.width*rect.height
     return val==tmp
 
 def build_split_up(rest_of_c, rest_of_d):
-
     solution = []
     x,y = rest_of_d.width, rest_of_d.height
     second = rest_of_c
     while(not is_finished(solution, x*y)):
-
         if rest_of_c.width<rest_of_d.width and second.width<rest_of_d.width:
             candidate_width= rest_of_c.width
             second_width= second.width
@@ -109,6 +96,16 @@ def calc(triple):
 
     return solution
 
+
+parser = argparse.ArgumentParser(description='Calculate minimal partition for pythagorean triple')
+parser.add_argument('x', metavar='x', type=int, nargs='+',
+                                   help='x^2 + y^2 = z^2')
+parser.add_argument('y', metavar='y', type=int, nargs='+',
+                                   help='x^2 + y^2 = z^2')
+parser.add_argument('z', metavar='z', type=int, nargs='+',
+                                   help='x^2 + y^2 = z^2')
+
+args = parser.parse_args()
 
 x,y,z = vars(args).get('x')[0], vars(args).get('y')[0], vars(args).get('z')[0]
 if pow(x,2) + pow(y,2) != pow(z, 2):
