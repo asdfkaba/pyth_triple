@@ -3,6 +3,7 @@ from __future__ import division
 import argparse
 import sys
 import itertools
+import random
 from PIL import Image, ImageFont, ImageDraw
 
 
@@ -168,8 +169,11 @@ im = Image.new('RGB', (scale,scale), (255,0,0))
 dr = ImageDraw.Draw(im)
 fnt = ImageFont.truetype('Pillow/Tests/fonts/FreeMono.ttf', 40)
 
+def get_color():
+    levels = range(32,256,32)
+    return tuple(random.choice(levels) for _ in range(3))
 
-dr.rectangle(((0,scale),(draw_y,scale-draw_y)), fill="brown", outline='black')
+dr.rectangle(((0,scale),(draw_y,scale-draw_y)), fill='brown' , outline='black')
 
 dr.rectangle(((scale-draw_x,scale-draw_y),(scale,0)), fill="green")
 dr.rectangle(((scale-(scale-draw_y),0),(scale,draw_x)), fill="green")
@@ -186,10 +190,11 @@ for i in range(2,len(res)):
     width = real_scale*res[i].width
     long_site = height if height > width else width
     short_site = width if height > width else height
+    color = get_color()
 
     # draw top left corner if anything left to draw there
     if i % 2 == 0 and count < (z-x)*(z-y):
-        dr.rectangle(((up_start[0], up_start[1]),(up_start[0]+long_site, up_start[1]+short_site)),  outline='white')
+        dr.rectangle(((up_start[0], up_start[1]),(up_start[0]+long_site, up_start[1]+short_site)),  fill=color, outline='white')
 
         # calc next (x,y) to start drawing in bottom right corner
         if 1 + up_start[0] + long_site < (scale-draw_x):
@@ -199,8 +204,8 @@ for i in range(2,len(res)):
         count += res[i].width*res[i].height
     # draw bottom right corner
     else:
-        potrait = abs(down_start[1]+short_site-scale) > 0 and abs(down_start[0]+long_site-scale) > 0
-        dr.rectangle(((down_start[0],down_start[1]),(down_start[0] + (short_site if potrait else long_site), down_start[1] + (long_site if potrait else short_site))), outline='white')
+        potrait = not abs(down_start[1]+short_site-scale) < 1 and not abs(down_start[0]+long_site-scale) < 1
+        dr.rectangle(((down_start[0],down_start[1]),(down_start[0] + (short_site if potrait else long_site), down_start[1] + (long_site if potrait else short_site))), fill=color,  outline='white')
 
         # calc next (x,y) to start drawing in bottom right corner
         if (1 + down_start[1] + (long_site if potrait else short_site)) < (scale):
@@ -215,7 +220,7 @@ for i in range(2,len(res)):
     elif abs(square_start[0] + width - draw_y) > 2  and abs(square_start[1] + height - draw_x) > 2:
         old = (square_start[0] + width, square_start[1])
 
-    dr.rectangle(((square_start[0],square_start[1]),(square_start[0]+ width, square_start[1]+ height)), outline='white')
+    dr.rectangle(((square_start[0],square_start[1]),(square_start[0]+ width, square_start[1]+ height)), fill=color, outline='white')
 
     col_finished = True if abs(square_start[1] + height - draw_x) < 1 else False
 
