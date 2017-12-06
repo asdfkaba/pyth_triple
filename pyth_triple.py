@@ -158,7 +158,7 @@ for re in res:
     print(str(re))
 
 
-scale=1000
+scale=2500
 draw_y = (y/z) * scale
 draw_x = (x/z) * scale
 
@@ -180,48 +180,57 @@ down_start = (draw_y,draw_x)
 square_start = (scale-draw_x,scale-draw_y)
 count = 0
 old = None
-line_finished=False
+col_finished = False
 for i in range(2,len(res)):
-    w = real_scale*res[i].height
-    h = real_scale*res[i].width
-    print()
+    height = real_scale*res[i].height
+    width = real_scale*res[i].width
+    long_site = height if height > width else width
+    short_site = width if height > width else height
+
+    # draw top left corner if anything left to draw there
     if i % 2 == 0 and count < (z-x)*(z-y):
-        dr.rectangle(((up_start[0], up_start[1]),(up_start[0]+ (w if w > h else h), up_start[1]+ (h if w > h else w))),  outline='white')
-        if (1 + up_start[0] + (w if w > h else h)) < (scale-draw_x):
-            up_start = (up_start[0] + (w if w > h else h), up_start[1] + 0)
+        dr.rectangle(((up_start[0], up_start[1]),(up_start[0]+long_site, up_start[1]+short_site)),  outline='white')
+
+        # calc next (x,y) to start drawing in bottom right corner
+        if 1 + up_start[0] + long_site < (scale-draw_x):
+            up_start = (up_start[0] + long_site, up_start[1] + 0)
         else:
-            up_start = (up_start[0], up_start[1] + (h if w > h else w))
+            up_start = (up_start[0], up_start[1] + short_site)
         count += res[i].width*res[i].height
+    # draw bottom right corner
     else:
-        orientation = -1 + down_start[0] + (w if w > h else h) > scale
-        if not orientation and i < len(res)-1:
-            orientation = 1 + down_start[1] + (w if w > h else h) > scale
-        dr.rectangle(((down_start[0],down_start[1]),(down_start[0] + ((h if w > h else w) if orientation else (w if w > h else h)), down_start[1] +  ((w if w > h else h) if orientation else (h if w >  h else w)))), outline='white')
-        if (1 + down_start[1] + (w if w > h else h)) < (scale):
-           down_start = (down_start[0], down_start[1] + ((w if w > h else h) if orientation else (h if w > h else w)))
+        potrait = abs(down_start[1]+short_site-scale) > 0 and abs(down_start[0]+long_site-scale) > 0
+        dr.rectangle(((down_start[0],down_start[1]),(down_start[0] + (short_site if potrait else long_site), down_start[1] + (long_site if potrait else short_site))), outline='white')
+
+        # calc next (x,y) to start drawing in bottom right corner
+        if (1 + down_start[1] + (long_site if potrait else short_site)) < (scale):
+           down_start = (down_start[0], down_start[1] + (long_site if potrait else short_site))
         else:
-           down_start = (down_start[0] + ((h if w > h else w) if orientation else (w if w > h else h)), down_start[1])
+           down_start = (down_start[0] + (short_site if potrait else long_site), down_start[1])
 
-    if (-1 + square_start[1] + (h if w > h else w)) > (draw_x):
-        if old is not None:
-            square_start = old
-    elif 1 + square_start[0] + (w if w > h else h) < draw_y and 1 + square_start[1] + (h if w > h else w) < draw_x:
-        old = (square_start[0] + (w if w > h else h), square_start[1])
+    # draw in square
+    if old is not None and col_finished:
+        square_start = old
+        old = None
+    elif abs(square_start[0] + width - draw_y) > 2  and abs(square_start[1] + height - draw_x) > 2:
+        old = (square_start[0] + width, square_start[1])
 
-    dr.rectangle(((square_start[0],square_start[1]),(square_start[0]+ h, square_start[1]+ w)), outline='white')
+    dr.rectangle(((square_start[0],square_start[1]),(square_start[0]+ width, square_start[1]+ height)), outline='white')
 
-    if abs(square_start[0] + (w if w > h else h)-draw_y) < 2:
-        print("HA")
-        square_start = (square_start[0], square_start[1]+ w)
-    elif abs(square_start[0] + (w if w > h else h)-draw_y) > 2 and abs(square_start[1] + (h if w > h else w)-draw_x) > 2:
-        print("HO")
-        square_start = (square_start[0], square_start[1]+ w)
+    col_finished = True if abs(square_start[1] + height - draw_x) < 1 else False
+
+
+    # calc next (x,y) to start drawing in square
+    if abs(square_start[0] + width - draw_y) < 2:
+        square_start = (square_start[0], square_start[1] + height)
+    elif abs(square_start[0] + width - draw_y) > 2 and abs(square_start[1] + height - draw_x) > 2:
+        square_start = (square_start[0], square_start[1] + height)
     else:
-        square_start = (square_start[0]+h , square_start[1])
+        square_start = (square_start[0] + width , square_start[1])
+
 
 dr.text((30,750), str(x)+"^2 + " +str(y) + "^2 = "+str(z)+"^2", font=fnt, fill=(255,255,255,128))
 dr.text((30,850), "pieces: "+str(len(res)), font=fnt, fill=(255,255,255,128))
-
 
 dr.rectangle(((0,scale),(draw_y,scale-draw_y)), outline='black')
 dr.rectangle(((scale-draw_x,0),(scale,draw_x)), outline='yellow')
