@@ -59,7 +59,7 @@ def draw(size, res, x, y, z):
                down_start = (down_start[0] + (short_site if potrait else long_site), down_start[1])
 
         # draw in square
-        if old is not None and col_finished:
+        if old is not None and (col_finished or square_start[1]+height > draw_x):
             square_start = old
             old = None
         elif abs(square_start[0] + width - draw_y) > 2  and abs(square_start[1] + height - draw_x) > 2:
