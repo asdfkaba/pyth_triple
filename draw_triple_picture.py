@@ -49,11 +49,11 @@ def draw(size, res, x, y, z):
             count += res[i].width*res[i].height
         # draw bottom right corner
         else:
-            potrait = not abs(down_start[1]+short_site-scale) < 1 and not abs(down_start[0]+long_site-scale) < 1
+            potrait = not abs(down_start[1]+short_site-scale) < 0.2 and not abs(down_start[0]+long_site-scale) < 0.2
             dr.rectangle(((down_start[0],down_start[1]),(down_start[0] + (short_site if potrait else long_site), down_start[1] + (long_site if potrait else short_site))), fill=color,  outline='white')
 
             # calc next (x,y) to start drawing in bottom right corner
-            if (1 + down_start[1] + (long_site if potrait else short_site)) < (scale):
+            if 1 + down_start[1] + (long_site if potrait else short_site) < (scale):
                down_start = (down_start[0], down_start[1] + (long_site if potrait else short_site))
             else:
                down_start = (down_start[0] + (short_site if potrait else long_site), down_start[1])
