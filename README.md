@@ -7,6 +7,6 @@ requirements:
  - PIL
 
 
-v1 vs v2:
+exmaples:
 
-<img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples_v1/39_80_89_triple.png" width="400" hspace="20"><img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/39_80_89_triple.png" width="400" hspace="20">
+<img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/20_21_29_triple.png" width="400" hspace="20"><img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/39_80_89_triple.png" width="400" hspace="20">
