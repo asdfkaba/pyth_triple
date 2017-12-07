@@ -39,13 +39,20 @@ def draw(size, res, x, y, z):
 
         # draw top left corner if anything left to draw there
         if i % 2 == 0 and count < (z-x)*(z-y):
-            dr.rectangle(((up_start[0], up_start[1]),(up_start[0]+long_site, up_start[1]+short_site)),  fill=color, outline='white')
+            potrait = (not abs(up_start[1]+short_site-scale-draw_y) < 0.2) and (not abs(up_start[0]+long_site-scale-draw_x) < 0.2)
+            print(up_start)
+            print(short_site)
+            print(scale-draw_y)
+            print(long_site)
+            print(scale-draw_x)
+            print(potrait)
+            dr.rectangle(((up_start[0], up_start[1]),(up_start[0]+(long_site if potrait else short_site), up_start[1]+(short_site if potrait else long_site))),  fill=color, outline='white')
 
             # calc next (x,y) to start drawing in bottom right corner
-            if 1 + up_start[0] + long_site < (scale-draw_x):
-                up_start = (up_start[0] + long_site, up_start[1] + 0)
+            if 1 + up_start[1] + (short_site if potrait else long_site) < (scale-draw_y):
+                up_start = (up_start[0], up_start[1] + (short_site if potrait else long_site))
             else:
-                up_start = (up_start[0], up_start[1] + short_site)
+                up_start = (up_start[0] + (long_site if potrait else short_site), up_start[1])
             count += res[i].width*res[i].height
         # draw bottom right corner
         else:

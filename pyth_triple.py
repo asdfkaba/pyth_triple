@@ -23,6 +23,14 @@ if pow(x,2) + pow(y,2) != pow(z, 2):
     sys.exit(0)
 trip = Triple(x if x < y else y ,y if x < y else x,z)
 res = calc(trip)
+trip2 = Triple(x if x > y else y ,y if x> y else x,z)
+res2 = calc(trip2)
+print(len(res))
+print(len(res2))
+if len(res2) < len(res):
+    print("FOUNDONE: " + str(trip2))
+    res = res2
+
 
 print("##########################")
 print("# x="+str(x)+", y="+str(y)+", z="+str(z))

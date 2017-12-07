@@ -70,21 +70,32 @@ def build_split_up(rest_of_c, rest_of_d):
             solution.append(second_candidate)
     return solution
 
-
 def calc(triple):
+    x, y, z = triple.x, triple.y, triple.z
+    trip = Triple(x if x < y else y ,y if x < y else x,z)
+    res = _calc(trip)
+    return res
+
+def _calc(triple):
     solution = []
+    solution2 = []
     # append square with area=y^2 (PICTURE: A)
     solution.append(Rect('A in Picture', triple.y, triple.y))
+    solution2.append(Rect('A in Picture', triple.y, triple.y))
     # append rect angle form (PICTURE: B)
     solution.append(Rect('B in Picture', triple.x, triple.z-triple.y))
+    solution2.append(Rect('B in Picture', triple.x, triple.z-triple.y))
 
     # missing pieces(2 equal forms with width m=z-x and height n=z-y (PICTURE: C)) which we have to split up to fill rest_of_d.size n^2 with n = x-(z-y))
     # together with rect angle form with minimal possible amount of pieces
-    c = Rect('dummy', triple.z-triple.x, triple.z-triple.y)
+    c = Rect('dummy', triple.z-triple.y, triple.z-triple.x)
+    c2 = Rect('dummy', triple.z-triple.x, triple.z-triple.y)
     d_length = triple.x-(triple.z-triple.y)
     d = Rect('dummy', d_length, d_length)
 
     # do the minimal split up and append result to solution
     solution += build_split_up(c, d)
-
+    solution2 += build_split_up(c2,d)
+    if len(solution2) < len(solution):
+        solution = solution2
     return solution
