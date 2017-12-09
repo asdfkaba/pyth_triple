@@ -21,5 +21,34 @@ If you look at one specific n value, for example n = 5, you see the generated py
 
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats2.png" width="800">
 
-The trend is linear if you only look at every 5th point. Between 5 dots there is always the same sequence, which depends on the remainder of `x/(z-y)`.
+The trend is linear if you only look at every 4th point. Between 5 dots there is always the same sequence, which depends on the remainder of `x/(z-y)`.
+
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats3.png" width="800">
+
+ m  | triple           | x%(y-z)       | partition size  |
+--- | ---------------- |:-------------:| ----------------|
+ 14 | (140, 171, 221)  | 40            | 9               |
+ 16 | (160, 231, 281)  | 10            | 14              |
+ 18 | (180, 299, 349)  | 30            | 10              |
+
+
+14:5 - : 9
+
+16:5 - : 14
+10
+18:5 - (180, 299, 349): 10
+30
+22:5 - (220, 459, 509): 10
+20
+24:5 - (240, 551, 601): 11
+40
+26:5 - (260, 651, 701): 16
+10
+28:5 - (280, 759, 809): 12
+30
+32:5 - (320, 999, 1049): 12
+20
+34:5 - (340, 1131, 1181): 13
+40
+36:5 - (360, 1271, 1321): 18
+
