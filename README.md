@@ -27,14 +27,6 @@ The trend is linear if you only look at every 4th point. Between 5 dots there is
 
 you can see the local peaks apear when the remainder is minimal and 100/remainder is maximal.
 
-6:5 - (11, 60, 61): 12
-0
-8:5 - (39, 80, 89): 8
-3
-12:5 - (119, 120, 169): 8
-21
-
-
 
 |n | m  | triple           | x%(y-z)       | partition size  |
 |- |--- |----------------- |:-------------:| :--------------:|
