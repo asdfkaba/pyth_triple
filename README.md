@@ -10,3 +10,10 @@ requirements:
 exmaples:
 
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/20_21_29_triple.png" width="400" hspace="20"><img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/39_80_89_triple.png" width="400" hspace="20">
+
+Primitive pythagoraen triples can be generated with euklids formula
+`a = m² - n², b = 2mn, c = m² + n²` with `m, n ∈ ℕ, m > n, gcd(m,n) = 1, ¬(odd(m) & odd(n)`
+
+You can see, for increasing n values the partition size increases slower for bigger x values.
+<img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats1.png" width="800">
+
