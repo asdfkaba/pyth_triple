@@ -25,6 +25,9 @@ The trend is linear if you only look at every 4th point. Between 5 dots there is
 
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats3.png" width="800">
 
+you can see the local peaks apear when the remainder is minimal and 100/remainder is maximal.
+
+
  m  | triple           | x%(y-z)       | partition size  |
 --- | ---------------- |:-------------:| :--------------:|
  14 | (140, 171, 221)  | 40            | 9               |
