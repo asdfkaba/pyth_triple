@@ -27,9 +27,21 @@ The trend is linear if you only look at every 4th point. Between 5 dots there is
 
 you can see the local peaks apear when the remainder is minimal and 100/remainder is maximal.
 
+6:5 - (11, 60, 61): 12
+0
+8:5 - (39, 80, 89): 8
+3
+12:5 - (119, 120, 169): 8
+21
+
+
 
 |n | m  | triple           | x%(y-z)       | partition size  |
 |- |--- |----------------- |:-------------:| :--------------:|
+|5 | 6  | (11, 60, 61)     | 0             | 12              |
+|5 | 8  | (39, 80, 89)     | 3             | 8               |
+|5 | 12 | (119, 120, 169   | 21            | 8               |
+|  |    |   TRESHOLD       |               |                 |
 |5 | 14 | (140, 171, 221)  | 40            | 9               |
 |5 | 16 | (160, 231, 281)  | 10            | 14              |
 |5 | 18 | (180, 299, 349)  | 30            | 10              |
