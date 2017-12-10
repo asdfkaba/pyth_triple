@@ -59,5 +59,5 @@ The difference you can see in the following pictures.
 
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/276_493_565_triple.png" width="300" hspace="20"><img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/300_589_661_triple.png" width="300" hspace="20">
 
-
+if you would've added a piece with same height as the pink one from bottom right corner(the light green in this picture), you would have ended with 12 pieces.
 
