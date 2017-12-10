@@ -45,19 +45,20 @@ you can see the local peaks apear when the remainder is minimal and 100/remainde
 If you look at the table for `n=6`, you see another influence on the partition size.
 
 
-|n | m  | triple           | x%(z-y)       | partition size  |
-|- |--- |----------------- |:-------------:| :--------------:|
-|6 | 17 | (204, 253, 325)  | 60            | 10              |
-|6 | 19 | (228, 325, 397)  | 12            | 16              |
-|6 | 23 | (276, 493, 565)  | 60            | 12              |
-|6 | 25 | (300, 589, 661)  | 12            | 11              |
-|6 | 29 | (348, 805, 877)  | 60            | 12              |
-|6 | 31 | (372, 925, 997)  | 12            | 18              |
+|n | m  | triple           | x%(z-y)       | partition size  | x-z+y | (z-x)%(x-z+y) |
+|- |--- |----------------- |:-------------:| :--------------:|:-----:|:-------------:|
+|6 | 17 | (204, 253, 325)  | 60            | 10              | 132   | 121           |
+|6 | 19 | (228, 325, 397)  | **12**        | **16**          | 156   | 13            |
+|6 | 23 | (276, 493, 565)  | 60            | 12              | 204   | 85            |
+|6 | 25 | (300, 589, 661)  | **12**        | **11**          | 228   | 133           |
+|6 | 29 | (348, 805, 877)  | 60            | 12              | 276   | 253           |
+|6 | 31 | (372, 925, 997)  | 12            | 18              | 300   | 25            |
 
-The partition size is for m=25 with 11 smaller than for m=23, even there is only 12 height left.
+The partition size is for m=19 with 16 way higher than for m=25, even for both `x%(y-z)=12`.
 The difference you can see in the following pictures.
 
-<img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/276_493_565_triple.png" width="300" hspace="20"><img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/300_589_661_triple.png" width="300" hspace="20">
+
+<img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/228_325_397_triple.png" width="400" hspace="20"><img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/300_589_661_triple.png" width="400" hspace="20">
 
 if you would've added a piece with same height as the pink one from bottom right corner(the light green in this picture), you would have ended with 12 pieces in the right picture.
 
