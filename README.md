@@ -9,10 +9,9 @@ An **upper bound** for the splitup size k is for all triples(x,y,z) generated ou
 
 **`k(m,n) ≤ (2*n+2) + (m-n-1)*1/n`**
 
-for `n = 1` all triples are located on this line:
+**`k(m,n) = (2*n+2) + (m-n-1)*1/n ∀x.x ∈ A `**
 
-`k(m,n=1) = (2*n+2) + (m-n-1)*1/n`
-
+`A = { Triple(m, n) | n=1 } ∪ { Triple(m, n) | m-n=1+i*2n, i ∈ ℕ }`
 
 
 # Usage
