@@ -21,6 +21,10 @@ If you look at one specific n value, for example `n=5`, you see the generated py
 
 `c(z,y) ∈ { 2n² | n ∈ ℕ } ∪ { n² | n ∈ ℕ, n%2 != 0 }`
 
+You can see there exists a simple formula for two classes of pythagorean triples to calculate the partition size(k):
+ - `k = x+1 if z-y = 1 (z-y = 1 ⇔ m-n = 1)`
+ - `k = x/2 +2 if z-y = 2 (z-y = 2 ⇔ n = 1 ∧ m > 2)`
+
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats2.png" width="800">
 
 The trend is linear if you only look at every 4th point. Between 5 dots there is always the same sequence, which depends on the remainder of `x/(z-y)`. If the remainder is smaller you need more parts to fillup the area `x*remainer`
