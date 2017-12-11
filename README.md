@@ -9,7 +9,7 @@ An **upper bound** for the splitup size k is for all triples(x,y,z) generated ou
 
 **`k(m,n) ≤ (2*n+2) + (m-n-1)*1/n`**
 
-for `n = 1` all triples sit on this upper bound:
+for `n = 1` all triples are located on this line:
 
 `k(m,n=1) = (2*n+2) + (m-n-1)*1/n`
 
