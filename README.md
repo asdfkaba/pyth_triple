@@ -9,6 +9,10 @@ An **upper bound** for the splitup size k is for all triples(x,y,z) generated ou
 
 **`k(m,n) ≤ (2*n+2) + (m-n-1)*1/n`**
 
+for `n = 1` all triples sit on this upper bound:
+
+`k(m,n=1) = (2*n+2) + (m-n-1)*1/n`
+
 
 
 # Usage
@@ -63,6 +67,8 @@ for [n=37](results/37.md) you have: `k(112) = 78`, `k(186) = 80`, `k(260) = 82` 
 **The formula above (1) is also an upper bound for all pythagorean triples (x, y, z):**
 
 `k(m,n) ≤ (2*n+2) + (m-n-1)*1/n`
+
+<img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats4.png" width="800">
 
 
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats3.png" width="800">
