@@ -67,3 +67,4 @@ The difference you can see in the following pictures.
 One the left site there is only `(z-x)%(x-z+y)=13` to fill the missing area, so you end up with many little pieces.
 One the right site first of all much more space is left and additionally `(z-x)%(x-z+y)=133` doesn't fit twice into `x-z+y=228`, which allows you to choose a little more efficient way. You could have choosen to place two 114-width pieces and end up at 12 pieces instead.
 
+you can find more result tables for n ∈ {1,2,...,40} under [results](results)
