@@ -9,7 +9,7 @@ An **upper bound** for the splitup size k is for all triples(x,y,z) generated ou
 
 **`k(m,n) ≤ (2*n+2) + (m-n-1)*1/n`**
 
-Furthermore you have a set of triples whose splitup size is located on the line.
+Furthermore you have a set of triples whose splitup size is located on this area.
 
 
 **`k(m,n) = (2*n+2) + (m-n-1)*1/n ∀x.x ∈ { Triple(m, n) | m-n=1+i*2n, i ∈ ℕ }`**
