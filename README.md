@@ -22,7 +22,7 @@ If you look at one specific n value, for example `n=5`, you see the generated py
 `c(z,y) ∈ { 2n² | n ∈ ℕ } ∪ { n² | n ∈ ℕ, n%2 != 0 }`
 
 You can see there exists a simple formula for two classes of pythagorean triples to calculate the partition size(k):
- - `k = x+1` if `z-y = 1 (z-y = 1 ⇔ m-n = 1)` (alawys the first entry in results/*.md
+ - `k = x+1` if `z-y = 1 (z-y = 1 ⇔ m-n = 1)` (always the first entry in [results](results)/*.md)
  - `k = x/2 + 2` if `z-y = 2 (z-y = 2 ⇔ n = 1 ∧ m > 2)` (see [results/01.md](results/01.md))
 
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats2.png" width="800">
