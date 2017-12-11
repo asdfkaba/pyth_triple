@@ -5,7 +5,7 @@ Primitive pythagoraen triples can be generated with euklids formula
 
 `x = m² - n², y = 2mn, z = m² + n²` with `m, n ∈ ℕ, m > n, gcd(m,n) = 1, ¬(odd(m) & odd(n))`
 
-An upper bound for the splitup size is for all triples:
+An **upper bound** for the splitup size k is for all triples(x,y,z) generated out of m,n:
 
 **`k(m,n) ≤ (2*n+2) + (m-n-1)*1/n`**
 
