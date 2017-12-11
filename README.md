@@ -44,6 +44,8 @@ Combining those leads to the conclusion that for a given n the partition size fo
 
 `k(peak.m) = (2*n+4) + (m-3*n-1)*1/n`
 
+in the picture above you have for example the peaks: `k(16) = 14`, `k(26) = 16`, `k(36) = 18` and `k(46) = 20`
+
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats3.png" width="800">
 
 you can see the local peaks apear when the remainder is minimal and 100/remainder is maximal.
