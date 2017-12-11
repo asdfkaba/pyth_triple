@@ -70,7 +70,7 @@ tuple_result = sorted(tuple_result, key=lambda x: x[0])
 plt.scatter([x[0] for x in tuple_result], [x[3] for x in tuple_result], label='partition size')
 plt.legend()
 plt.xlabel('x')
-#plt.show()
+plt.show()
 
 
 fig = plt.figure()
@@ -82,8 +82,8 @@ ax.legend()
 ax.set_xlabel('x value of x^2+y^2=z^2 with x < y')
 ax.set_ylabel('n value of euklids formula')
 ax.set_zlabel('minimal partition size')
-plt.title('minimal partition size for increasing x with n=5')
-#plt.show()
+plt.title('minimal partition size for increasing x with n='+str(n))
+plt.show()
 
 
 writer.write_table()

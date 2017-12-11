@@ -36,16 +36,15 @@ def draw(size, res, x, y, z):
         long_site = height if height > width else width
         short_site = width if height > width else height
         color = get_color()
+        print(square_start)
+        print(short_site)
+        print(long_site)
+        print(draw_x)
+        print(draw_y)
 
         # draw top left corner if anything left to draw there
         if i % 2 == 0 and count < (z-x)*(z-y):
             potrait = (not abs(up_start[1]+short_site-scale-draw_y) < 0.2) and (not abs(up_start[0]+long_site-scale-draw_x) < 0.2)
-            print(up_start)
-            print(short_site)
-            print(scale-draw_y)
-            print(long_site)
-            print(scale-draw_x)
-            print(potrait)
             dr.rectangle(((up_start[0], up_start[1]),(up_start[0]+(long_site if potrait else short_site), up_start[1]+(short_site if potrait else long_site))),  fill=color, outline='white')
 
             # calc next (x,y) to start drawing in bottom right corner
@@ -57,7 +56,7 @@ def draw(size, res, x, y, z):
         # draw bottom right corner
         else:
             potrait = not abs(down_start[1]+short_site-scale) < 0.2 and not abs(down_start[0]+long_site-scale) < 0.2
-            dr.rectangle(((down_start[0],down_start[1]),(down_start[0] + (short_site if potrait else long_site), down_start[1] + (long_site if potrait else short_site))), fill=color,  outline='white')
+            dr.rectangle(((down_start[0],down_start[1]),(down_start[0] + (short_site if potrait else long_site), down_start[1] + (long_site if potrait else short_site))), fill=color)
 
             # calc next (x,y) to start drawing in bottom right corner
             if 1 + down_start[1] + (long_site if potrait else short_site) < (scale):
@@ -71,6 +70,7 @@ def draw(size, res, x, y, z):
             old = None
         elif abs(square_start[0] + width - draw_y) > 2  and abs(square_start[1] + height - draw_x) > 2:
             old = (square_start[0] + width, square_start[1])
+        print(square_start)
 
         dr.rectangle(((square_start[0],square_start[1]),(square_start[0]+ width, square_start[1]+ height)), fill=color, outline='white')
 
@@ -78,13 +78,14 @@ def draw(size, res, x, y, z):
 
 
         # calc next (x,y) to start drawing in square
-        if abs(square_start[0] + width - draw_y) < 2:
+        if abs(square_start[0] + width - draw_y) < 0.2:
             square_start = (square_start[0], square_start[1] + height)
-        elif abs(square_start[0] + width - draw_y) > 2 and abs(square_start[1] + height - draw_x) > 2:
+        elif abs(square_start[0] + width - draw_y) > 0.2 and abs(square_start[1] + height - draw_x) > 0.2:
             square_start = (square_start[0], square_start[1] + height)
         else:
             square_start = (square_start[0] + width , square_start[1])
-
+        print(square_start)
+        print()
 
     dr.text((int(scale/8),scale-int(scale/4)), str(x)+"^2 + " +str(y) + "^2 = "+str(z)+"^2", font=fnt, fill=(255,255,255,128))
     dr.text((int(scale/8),scale-int(scale/6)), "pieces: "+str(len(res)), font=fnt, fill=(255,255,255,128))
