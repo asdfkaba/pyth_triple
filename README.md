@@ -20,7 +20,7 @@ An upper bound for the splitup size is for all triples:
   - generates a markdown table for given n and optional limit(default=1000)(from n=n, m=n+1 until n=n, m=n+limit
   - usage `python generate_triple_table_for_n.py n [--limit limit]`
 
-# Exmaples
+# Examples
 
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/20_21_29_triple.png" width="400" hspace="20"><img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/39_80_89_triple.png" width="400" hspace="20">
 
