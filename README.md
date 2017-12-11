@@ -13,6 +13,8 @@ The splitup size is for all triples:
 | `k(m,n) = 2m`                       | else         |
 
 
+# Usage
+
 - pyth_triple.py
   - generates a splitup for the given triple(x,y,z) and draws a split up picture to x_y_z_triple.png
   - usage `python pyth_triple.py x y z`
@@ -20,7 +22,7 @@ The splitup size is for all triples:
   - generates a markdown table for given n and optional limit(default=1000)(from n=n, m=n+1 until n=n, m=n+limit
   - usage `python generate_triple_table_for_n.py n [--limit limit]`
 
-exmaples:
+# Exmaples
 
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/20_21_29_triple.png" width="400" hspace="20"><img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/39_80_89_triple.png" width="400" hspace="20">
 
