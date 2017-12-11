@@ -36,6 +36,14 @@ If you look at one specific n value, for example `n=5`, you see the generated py
 
 The trend is linear if you only look at every 4th point. Between two of these points there is always the same sequence, which depends on the remainder of `x/(z-y)`. If the remainder is smaller you need more parts to fillup the area `x*remainder`
 
+The distance Δm between two peak points is for all n: `Δm(peak1, peak2) = 2*n`
+The difference in partiton size Δk between two peak points for all n is: `Δk(peak1, peak2)=2`
+The first peak is always `k(peak1) = 2*n+4` and it always occurs at `m=3*n+1`
+
+Combining those leads to the conclusion that for a given n the partition size for all peak points is: 
+
+`k(peak.m) = (2*n+4) + (m-3*n-1)*1/n`
+
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats3.png" width="800">
 
 you can see the local peaks apear when the remainder is minimal and 100/remainder is maximal.
