@@ -1,11 +1,12 @@
 gives a splitup of the z^2 area of a pythagorean triple (x,y,z) to build x^2 and y^2 area out of this parts
 (maybe minimal under the condition of only using rectangles and no rectilinear polygons)
 
-usage `python pyth_triple.py x y z`
-
-requirements:
- - PIL
-
+- pyth_triple.py
+  - generates a splitup for the given triple(x,y,z) and draws a split up picture to x_y_z_triple.png
+  - usage `python pyth_triple.py x y z`
+- generate_triple_table_for_n.py
+  - generates a markdown table for given n and limit m
+  - usage `python generate_triple_table_for_n.py n m`
 
 exmaples:
 
