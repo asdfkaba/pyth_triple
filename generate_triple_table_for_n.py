@@ -8,6 +8,7 @@ import pytablewriter
 from triple_calcs import calc, Triple
 from mpl_toolkits.mplot3d import Axes3D
 
+upper_limit = 1000
 
 def pythagorean_triple(s, t):
     a = s**2-t**2
@@ -18,7 +19,7 @@ def pythagorean_triple(s, t):
 def s_t_generator(upper_bound):
     limit = upper_bound + 1
     for t in range(limit-2, limit-1):
-        for s in range(t + 1, limit+1000):
+        for s in range(t + 1, limit+upper_limit):
             # Check if s & t are coprime
             if fractions.gcd(s, t) != 1:
                 continue
@@ -27,17 +28,20 @@ def s_t_generator(upper_bound):
             yield (s, t)
 
 parser = argparse.ArgumentParser(description='Calculate minimal partition for pythagorean triple')
-parser.add_argument('x', metavar='x', type=int, nargs='+',
+parser.add_argument('x', metavar='n', type=int, nargs='+',
                                    help='limit')
+parser.add_argument('--limit', metavar='limit', type=int,
+                    default=upper_limit, help='limit')
 
 args = parser.parse_args()
 
-limit = vars(args).get('x')[0]
+n = vars(args).get('x')[0]
+upper_limit = vars(args).get('limit')-1
+
 count = 0
 triples = []
 tuple_result = []
 writer = pytablewriter.MarkdownTableWriter()
-n = limit
 writer.table_name = "n="+str(n)
 writer.header_list = ["n", "m", "triple", "z-y", "x%(z-y)","partition size", "x-z+y", "(z-x)%(x-z+y)"]
 writer.value_matrix = []
@@ -57,20 +61,14 @@ for s, t in s_t_generator(n+1):
     count +=1
     writer.value_matrix.append([t, s, str(triple), triple.z-triple.y, triple.x%(triple.z-triple.y), len(calc(triple)), triple.x-triple.z+triple.y, (triple.z-triple.x)%(triple.x-triple.z+triple.y)])
     tuple_result.append((triple.x, triple.y, triple.z, len(calc(triple)), triple.z-triple.y, float(100/(triple.x%(triple.z-triple.y))) if triple.x%(triple.z-triple.y) != 0 else 0, t))
-    #print()
-    #print()
-    #print(str(s)+":"+str(t)+ " - " + str(triple) +": " + str(len(calc(triple))))
-    #print((triple.x%(triple.z-triple.y)) if triple.x%(triple.z-triple.y) != 0 else 0)
-    #print((triple.z-triple.x)%(triple.x-triple.z+triple.y)*2 > triple.x-triple.z+triple.y)
-    #print(triple.x-triple.z+triple.y)
-    #print((triple.z-triple.x)%(triple.x-triple.z+triple.y))
 
 tuple_result = sorted(tuple_result, key=lambda x: x[0])
 
 plt.scatter([x[0] for x in tuple_result], [x[3] for x in tuple_result], label='partition size')
 plt.legend()
 plt.xlabel('x')
-plt.show()
+## 2D Plot (x,partition size)
+# plt.show()
 
 
 fig = plt.figure()
@@ -83,7 +81,8 @@ ax.set_xlabel('x value of x^2+y^2=z^2 with x < y')
 ax.set_ylabel('n value of euklids formula')
 ax.set_zlabel('minimal partition size')
 plt.title('minimal partition size for increasing x with n='+str(n))
-plt.show()
+## 3D Plot(x, n, partition size) & (x, n, 100/x%(z-y))
+# plt.show()
 
 
 writer.write_table()
