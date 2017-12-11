@@ -20,7 +20,7 @@ Primitive pythagoraen triples can be generated with euklids formula
 You can see, for increasing n values the partition size increases slower for bigger x values.
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats1.png" width="800">
 
-If you look at one specific n value, for example `n=5`, you see the generated pythagorean triples all have distance `c(z, y) = 2n²` after threshold `2mn < m²-n²` (before distance `c(z,y) = m²-n²`).
+If you look at one specific n value, for example `n=5`, you see the generated pythagorean triples all have distance `c(z, y) = 2n²` after threshold `2mn < m²-n²` (before: `c(z,y) = m²-n²`).
 
 `c(z,y) ∈ { 2n² | n ∈ ℕ } ∪ { n² | n ∈ ℕ, n%2 != 0 }`
 
