@@ -7,10 +7,8 @@ Primitive pythagoraen triples can be generated with euklids formula
 
 An upper bound for the splitup size is for all triples:
 
-|  Partition size k                   |              |         
-|-------------------------------------|--------------|
-| `k(m,n) ≤ (2*n+4) + (m-3*n-1)*1/n`  | if `m-n > 1` |
-| `k(m,n) = 2m`                       | else         |
+**`k(m,n) ≤ (2*n+2) + (m-n-1)*1/n`**
+
 
 
 # Usage
@@ -52,22 +50,19 @@ The trend is linear if you only look at every 4th point. Between two of these po
 
 The distance Δm between two peak points is for all n: `Δm(peak1, peak2) = 2*n`
 The difference in partiton size Δk between two peak points for all n is: `Δk(peak1, peak2)=2`
-The first peak is always `k(peak1) = 2*n+4` and it always occurs at `m=3*n+1`
+The first peak is always `k(peak1) = 2*n+2` and it always occurs at `m=n+1`
 
 Combining those leads to the conclusion that for a given n the partition size for all peak points is: 
 
-`k(peak.m) = (2*n+4) + (m-3*n-1)*1/n` (1)
+`k(peak.m) = (2*n+2) + (m-n-1)*1/n` (1)
 
 in the picture above you have for example the peaks: `k(16) = 14`, `k(26) = 16`, `k(36) = 18` and `k(46) = 20`
 
 for [n=37](results/37.md) you have: `k(112) = 78`, `k(186) = 80`, `k(260) = 82` and `k(334) = 84`
 
-**The formula above (1) is also an upper bound for all pythagorean triples (x, y, z) except the triples with `z-y = 1`, which always have a partition size: `k(m,n) = x+1 = 2*m`:**
+**The formula above (1) is also an upper bound for all pythagorean triples (x, y, z):**
 
-|  Partition size k                   |              |         
-|-------------------------------------|--------------|
-| `k(m,n) ≤ (2*n+4) + (m-3*n-1)*1/n`  | if `m-n > 1` |
-| `k(m,n) = x+1 = 2*m`                | else         |
+`k(m,n) ≤ (2*n+2) + (m-n-1)*1/n`
 
 
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats3.png" width="800">
