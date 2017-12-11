@@ -5,8 +5,8 @@ gives a splitup of the z^2 area of a pythagorean triple (x,y,z) to build x^2 and
   - generates a splitup for the given triple(x,y,z) and draws a split up picture to x_y_z_triple.png
   - usage `python pyth_triple.py x y z`
 - generate_triple_table_for_n.py
-  - generates a markdown table for given n and limit m
-  - usage `python generate_triple_table_for_n.py n m`
+  - generates a markdown table for given n and optional limit(from n=n, m=n+1 until n=n, m=n+limit
+  - usage `python generate_triple_table_for_n.py n [limit]`
 
 exmaples:
 
