@@ -61,7 +61,7 @@ The first peak is always `k(peak1) = 2*n+2` and it always occurs at `m=n+1`
 
 Combining those leads to the conclusion that for a given n the partition size for all peak points is: 
 
-`k(peak.m) = (2*n+2) + (m-n-1)*1/n` (1)
+`k(peak.m, n) = (2*n+2) + (m-n-1)*1/n` (1)
 
 in the picture above you have for example the peaks: `k(16) = 14`, `k(26) = 16`, `k(36) = 18` and `k(46) = 20`
 
