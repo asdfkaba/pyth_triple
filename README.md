@@ -50,7 +50,10 @@ for [n=37](results/37.md) you have: `k(112) = 78`, `k(186) = 80`, `k(260) = 82` 
 
 **The formula above (1) is also an upper bound for all pythagorean triples (x, y, z) except the triples with `z-y = 1`, which always have a partition size: `k(m,n) = x+1 = m²-n²+1`:**
 
-`k(m,n) ≤ (2*n+4) + (m-3*n-1)*1/n` if `m-n > 1`
+|  Partition size k                   |              |         
+|-------------------------------------|--------------|
+| `k(m,n) ≤ (2*n+4) + (m-3*n-1)*1/n`  | if `m-n > 1` |
+| `k(m,n) = x+1 = m²-n²+1`            | else         |
 
 
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats3.png" width="800">
