@@ -67,7 +67,7 @@ If you look at the table for `n=6`, you see another influence on the partition s
 |6 | 31 | (372, 925, 997)  | 12            | 18              | 300   | 25            |
 
 `x-z-y` is the size of the square we want fo fill.
-`(z-x)%(x-z+y)` is the rest, which is coloured pink in the right picture.
+`(z-x)%(x-z+y)` is the remainder of the split up rectangles, which is coloured pink in the right picture.
 
 The partition size is for `m=19` with 16 way higher than for `m=25`, even for both `x%(y-z)=12`.
 The difference you can see in the following pictures.
