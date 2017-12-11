@@ -1,6 +1,18 @@
 gives a splitup of the z^2 area of a pythagorean triple (x,y,z) to build x^2 and y^2 area out of this parts
 (maybe minimal under the condition of only using rectangles and no rectilinear polygons)
 
+Primitive pythagoraen triples can be generated with euklids formula
+
+`x = m² - n², y = 2mn, z = m² + n²` with `m, n ∈ ℕ, m > n, gcd(m,n) = 1, ¬(odd(m) & odd(n))`
+
+The splitup size is for all triples:
+
+|  Partition size k                   |              |         
+|-------------------------------------|--------------|
+| `k(m,n) ≤ (2*n+4) + (m-3*n-1)*1/n`  | if `m-n > 1` |
+| `k(m,n) = 2m`                       | else         |
+
+
 - pyth_triple.py
   - generates a splitup for the given triple(x,y,z) and draws a split up picture to x_y_z_triple.png
   - usage `python pyth_triple.py x y z`
@@ -34,7 +46,7 @@ If you look at one specific n value, for example `n=5`, you see the generated py
 
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats2.png" width="800">
 
-The trend is linear if you only look at every 4th point. Between two of these points there is always the same sequence, which depends on the remainder of `x/(z-y)`. If the remainder is smaller you need more parts to fillup the area `x*remainder`
+The trend is linear if you only look at every 4th point. Between two of these points there is always the same sequence, which depends on the r emainder of `x/(z-y)`. If the remainder is smaller you need more parts to fillup the area `x*remainder`
 
 The distance Δm between two peak points is for all n: `Δm(peak1, peak2) = 2*n`
 The difference in partiton size Δk between two peak points for all n is: `Δk(peak1, peak2)=2`
