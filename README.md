@@ -5,7 +5,7 @@ Primitive pythagoraen triples can be generated with euklids formula
 
 `x = m² - n², y = 2mn, z = m² + n²` with `m, n ∈ ℕ, m > n, gcd(m,n) = 1, ¬(odd(m) & odd(n))`
 
-An **upper bound** for the splitup size k is for all triples(x,y,z) generated out of m,n:
+An **upper bound** for the splitup size k is for all primitive triples(x,y,z) generated with the above formula:
 
 **`k(m,n) ≤ (2*n+2) + (m-n-1)*1/n`**
 
@@ -15,7 +15,7 @@ Furthermore you have a set of triples whose splitup size is located on this area
 
 This includes for example all triples generated with `n=1`
 
-The triples ∉ `{ Triple(m, n) | m-n=1+i*2n, i ∈ ℕ }`, which is by far the majority, have a way lower splitup size, especially for big triples, which you can see [here](examples/stats5.png)
+The triples ∉ `{ Triple(m, n) | m-n=1+i*2n, i ∈ ℕ }`, which is by far the majority, have a way lower splitup size, especially for big triples, which you can see [here](examples/stats5.png).
 
 # Usage
 
