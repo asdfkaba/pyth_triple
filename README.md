@@ -74,6 +74,11 @@ for [n=37](results/37.md) you have: `k(112) = 78`, `k(186) = 80`, `k(260) = 82` 
 
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats4.png" width="800">
 
+If you look at n=2000 it is obvious that the bound is very high for most of the triples. Almost all of the partion sizes are below 100. If you would exclude all triples, which are elment of `{ Triple(m, n) | m-n=1+i*2n, i ∈ ℕ }`, you could easily half the bound.
+
+<img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats5.png" width="800">
+
+
 
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats3.png" width="800">
 
