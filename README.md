@@ -14,6 +14,12 @@ Primitive pythagoraen triples can be generated with euklids formula
 
 `x = m² - n², y = 2mn, z = m² + n²` with `m, n ∈ ℕ, m > n, gcd(m,n) = 1, ¬(odd(m) & odd(n))`
 
+The algorithm for creating the splitup:
+  - ensure x in triple is smaller than y, switch them if not
+  - take y^2 out of z^2 (bottom left corner area in the [pictures](#examples))
+  - Take biggest possible part out of remaining area which can be placed in x^2 (top right corner area in the pictures)
+  - Split remaining two rectangles with minimal amount of cuts to fill the missing square area of x^2
+
 An **upper bound** for the splitup size k is for all primitive triples(x,y,z) generated with the above formula:
 
 **`k(m,n) ≤ (2*n+2) + (m-n-1)*1/n`**
