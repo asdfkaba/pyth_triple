@@ -11,12 +11,11 @@ An **upper bound** for the splitup size k is for all triples(x,y,z) generated ou
 
 Furthermore you have a set of triples whose splitup size is located on this area.
 
-
 **`k(m,n) = (2*n+2) + (m-n-1)*1/n ∀x.x ∈ { Triple(m, n) | m-n=1+i*2n, i ∈ ℕ }`**
 
 This includes for example all triples generated with `n=1`
 
-
+The triples ∉ `{ Triple(m, n) | m-n=1+i*2n, i ∈ ℕ }`, which is by far the majority, have a way lower splitup size, especially for big triples, which you can see [here](examples/stats5.png)
 
 # Usage
 
@@ -74,15 +73,10 @@ for [n=37](results/37.md) you have: `k(112) = 78`, `k(186) = 80`, `k(260) = 82` 
 
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats4.png" width="800">
 
-If you look at n=2000 it is obvious that the bound is very high for most of the triples. Almost all of the partion sizes are below 100. If you would exclude all triples, which are elment of `{ Triple(m, n) | m-n=1+i*2n, i ∈ ℕ }`, you could easily half the bound.
-
-<img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats5.png" width="800">
-
-
+in the next picture you can see the local peaks apear when the remainder is minimal and 100/remainder is maximal.
 
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/stats3.png" width="800">
 
-you can see the local peaks apear when the remainder is minimal and 100/remainder is maximal.
 
 
 |n | m  | triple           | x%(z-y)       | partition size  |
