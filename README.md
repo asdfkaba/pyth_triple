@@ -16,7 +16,7 @@ Primitive pythagoraen triples can be generated with euklids formula
 
 The algorithm for creating the splitup:
   - ensure x in triple is smaller than y, switch them if not
-  - take y^2 out of z^2 (bottom left corner area in the [pictures](#examples))
+  - take y^2 out of z^2 (bottom left corner square area(partially hidden) in the [pictures](#examples))
   - Take biggest possible part out of remaining area which can be placed in x^2 (top right corner area in the pictures)
   - Split remaining two rectangles with minimal amount of cuts to fill the missing square area of x^2
 
