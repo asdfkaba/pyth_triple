@@ -25,6 +25,8 @@ def s_t_generator(upper_bound):
                 continue
             if s%2 == 1 and t%2 == 1:
                 continue
+            if 2*s*t > pow(s,2)-pow(t,2):
+                pass
             yield (s, t)
 
 parser = argparse.ArgumentParser(description='Calculate minimal partition for pythagorean triple')
@@ -59,30 +61,34 @@ for s, t in s_t_generator(n+1):
         writer.value_matrix.append(['THRESHOLD'])
 
     count +=1
-    writer.value_matrix.append([t, s, str(triple), triple.z-triple.y, triple.x%(triple.z-triple.y), len(calc(triple)), triple.x-triple.z+triple.y, (triple.z-triple.x)%(triple.x-triple.z+triple.y)])
-    tuple_result.append((triple.x, triple.y, triple.z, len(calc(triple)), triple.z-triple.y, float(100/(triple.x%(triple.z-triple.y))) if triple.x%(triple.z-triple.y) != 0 else 0, t))
+    sol = calc(triple)
+    writer.value_matrix.append([t, s, str(triple), triple.z-triple.y, triple.x%(triple.z-triple.y), len(sol), triple.x-triple.z+triple.y, (triple.z-triple.x)%(triple.x-triple.z+triple.y)])
+
+    tuple_result.append((triple.x, triple.y, triple.z, len(sol), triple.z-triple.y, float(100/(triple.x%(triple.z-triple.y))) if triple.x%(triple.z-triple.y) != 0 else 0, t, s))
 
 tuple_result = sorted(tuple_result, key=lambda x: x[0])
 
-plt.scatter([x[0] for x in tuple_result], [x[3] for x in tuple_result], label='partition size')
+plt.scatter([x[7] for x in tuple_result], [x[3] for x in tuple_result], label='partition size k for n='+str(n))
+plt.plot([x[7] for x in tuple_result], [2*x[6]+2 + float((x[7]-x[6]-1)/float(x[6])) for x in tuple_result], label='upper bound for k: k(m,n) <= (2*n+2) + (m-n-1)*1/n', color='orangered')
+
 plt.legend()
-plt.xlabel('x')
-## 2D Plot (x,partition size)
-# plt.show()
+plt.xlabel('m')
+##2D Plot (x,partition size)
+plt.show()
 
 
 fig = plt.figure()
 ax = fig.gca(projection='3d')
 ax2 = fig.gca(projection='3d')
-ax.scatter([x[0] for x in tuple_result], [x[6] for x in tuple_result], [x[3] for x in tuple_result], label='partition size')
-ax.scatter([x[0] for x in tuple_result], [x[6] for x in tuple_result], [x[5] for x in tuple_result], label='100/x%(z-y)')
+ax.scatter([x[7] for x in tuple_result], [x[6] for x in tuple_result], [x[3] for x in tuple_result], label='partition size for n='+str(n))
+#  ax.scatter([x[7] for x in tuple_result], [x[6] for x in tuple_result], [x[5] for x in tuple_result], label='100/x%(z-y)')
 ax.legend()
-ax.set_xlabel('x value of x^2+y^2=z^2 with x < y')
+ax.set_xlabel('m value of euklids formula')
 ax.set_ylabel('n value of euklids formula')
 ax.set_zlabel('minimal partition size')
 plt.title('minimal partition size for increasing x with n='+str(n))
 ## 3D Plot(x, n, partition size) & (x, n, 100/x%(z-y))
-# plt.show()
+plt.show()
 
 
-writer.write_table()
+# writer.write_table()
