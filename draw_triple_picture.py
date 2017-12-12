@@ -36,11 +36,6 @@ def draw(size, res, x, y, z):
         long_site = height if height > width else width
         short_site = width if height > width else height
         color = get_color()
-        print(square_start)
-        print(short_site)
-        print(long_site)
-        print(draw_x)
-        print(draw_y)
 
         # draw top left corner if anything left to draw there
         if i % 2 == 0 and count < (z-x)*(z-y):
@@ -65,22 +60,22 @@ def draw(size, res, x, y, z):
                down_start = (down_start[0] + (short_site if potrait else long_site), down_start[1])
 
         # draw in square
-        if old is not None and (col_finished or square_start[1]+height > draw_x):
+        if old is not None and (col_finished or -0.05  + square_start[1]+height > draw_x):
             square_start = old
             old = None
-        elif abs(square_start[0] + width - draw_y) > 2  and abs(square_start[1] + height - draw_x) > 2:
+        elif abs(square_start[0] + width - draw_y) > 0.05 and abs(square_start[1] + height - draw_x) > 0.05:
             old = (square_start[0] + width, square_start[1])
         print(square_start)
 
         dr.rectangle(((square_start[0],square_start[1]),(square_start[0]+ width, square_start[1]+ height)), fill=color, outline='white')
 
-        col_finished = True if abs(square_start[1] + height - draw_x) < 1 else False
+        col_finished = True if abs(square_start[1] + height - draw_x) < 0.05 else False
 
 
         # calc next (x,y) to start drawing in square
         if abs(square_start[0] + width - draw_y) < 0.2:
             square_start = (square_start[0], square_start[1] + height)
-        elif abs(square_start[0] + width - draw_y) > 0.2 and abs(square_start[1] + height - draw_x) > 0.2:
+        elif abs(square_start[0] + width - draw_y) > 0.05 and abs(square_start[1] + height - draw_x) > 0.05:
             square_start = (square_start[0], square_start[1] + height)
         else:
             square_start = (square_start[0] + width , square_start[1])
