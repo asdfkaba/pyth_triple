@@ -1,7 +1,7 @@
  #!/bin/bash
-for i in `seq 1 10`;
+ # generates markdown tables for n in range [1,40] with limit n+1000 for m
+for i in `seq 1 40`;
 do
-	echo $i
-	python calc_first_n_pythagorean_triple_splitup_size.py $i > results/$i.md
+	python generate_triple_table_for_n.py $i > results/$i.md
 done
 
