@@ -1,3 +1,12 @@
+## Table of Contents
+- [Intro](#intro)
+- [Usage](#usage)
+- [Example Pictures](#examples)
+- [Theoretical Thoughts](#theoretical-thoughts)
+
+
+## Intro
+
 gives a splitup of the z^2 area of a pythagorean triple (x,y,z) to build x^2 and y^2 area out of this parts
 (maybe minimal under the condition of only using rectangles and no rectilinear polygons)
 
@@ -17,7 +26,7 @@ This includes for example all triples generated with `n=1`
 
 The triples ∉ `{ Triple(m, n) | m-n=1+i*2n, i ∈ ℕ }`, which is by far the majority, have a way lower splitup size, especially for big triples, which you can see [here](examples/stats5.png).
 
-# Usage
+## Usage
 
 - pyth_triple.py
   - generates a splitup for the given triple(x,y,z) and draws a split up picture to x_y_z_triple.png
@@ -31,7 +40,7 @@ this [output](results/01.md)
 
 <img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/20_21_29_triple.png" width="400" hspace="20"><img src="https://raw.githubusercontent.com/asdfkaba/pyth_triple/master/examples/39_80_89_triple.png" width="400" hspace="20">
 
-# Theoretical thoughts
+## Theoretical thoughts
 
 Primitive pythagoraen triples can be generated with euklids formula
 
