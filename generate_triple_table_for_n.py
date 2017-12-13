@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import division
 import math
 import argparse
 import fractions
@@ -15,6 +16,9 @@ def pythagorean_triple(s, t):
     b = 2*s*t
     c = s**2+t**2
     return (a, b, c)
+
+def upper_bound(s, t):
+    return (2*t+2) + (s-t-1)*1/t
 
 def s_t_generator(upper_bound):
     limit = upper_bound + 1
@@ -45,7 +49,7 @@ triples = []
 tuple_result = []
 writer = pytablewriter.MarkdownTableWriter()
 writer.table_name = "n="+str(n)
-writer.header_list = ["n", "m", "triple", "z-y", "x%(z-y)","partition size", "x-z+y", "(z-x)%(x-z+y)"]
+writer.header_list = ["n", "m", "triple", "z-y", "x%(z-y)","partition size", "upper bound", "x-z+y", "(z-x)%(x-z+y)"]
 writer.value_matrix = []
 threshold = False
 for s, t in s_t_generator(n+1):
@@ -62,19 +66,26 @@ for s, t in s_t_generator(n+1):
 
     count +=1
     sol = calc(triple)
-    writer.value_matrix.append([t, s, str(triple), triple.z-triple.y, triple.x%(triple.z-triple.y), len(sol), triple.x-triple.z+triple.y, (triple.z-triple.x)%(triple.x-triple.z+triple.y)])
+    writer.value_matrix.append([t, s, str(triple), triple.z-triple.y, triple.x%(triple.z-triple.y), len(sol), upper_bound(s,t), triple.x-triple.z+triple.y, (triple.z-triple.x)%(triple.x-triple.z+triple.y)])
 
-    tuple_result.append((triple.x, triple.y, triple.z, len(sol), triple.z-triple.y, float(100/(triple.x%(triple.z-triple.y))) if triple.x%(triple.z-triple.y) != 0 else 0, t, s))
+    tuple_result.append((triple.x, triple.y, triple.z, len(sol), triple.z-triple.y,
+                         float(100/(triple.x%(triple.z-triple.y))) if triple.x%(triple.z-triple.y) != 0 else 0, t, s,
+                         float((triple.z-triple.x)%(triple.x-triple.z+triple.y))
+                        ))
 
 tuple_result = sorted(tuple_result, key=lambda x: x[0])
 
+# plt.scatter([x[7] for x in tuple_result], [x[3] for x in tuple_result], label='partition size k for n='+str(n))
+# plt.plot([x[7] for x in tuple_result], [upper_bound(x[7], x[6]) for x in tuple_result], label='upper bound for k: k(m,n) <= (2*n+2) + (m-n-1)*1/n', color='orangered')
+
 plt.scatter([x[7] for x in tuple_result], [x[3] for x in tuple_result], label='partition size k for n='+str(n))
-plt.plot([x[7] for x in tuple_result], [2*x[6]+2 + float((x[7]-x[6]-1)/float(x[6])) for x in tuple_result], label='upper bound for k: k(m,n) <= (2*n+2) + (m-n-1)*1/n', color='orangered')
+plt.scatter([x[7] for x in tuple_result], [x[5] for x in tuple_result], label='100/x%(z.y)')
+plt.scatter([x[7] for x in tuple_result], [100/x[8] if x[8] != 0 else 0 for x in tuple_result], label='(z-x)%(x-z+y)')
 
 plt.legend()
 plt.xlabel('m')
 ##2D Plot (x,partition size)
-plt.show()
+#plt.show()
 
 
 fig = plt.figure()
@@ -88,7 +99,7 @@ ax.set_ylabel('n value of euklids formula')
 ax.set_zlabel('minimal partition size')
 plt.title('minimal partition size for increasing x with n='+str(n))
 ## 3D Plot(x, n, partition size) & (x, n, 100/x%(z-y))
-plt.show()
+#plt.show()
 
 
-# writer.write_table()
+writer.write_table()
