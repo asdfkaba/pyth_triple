@@ -21,7 +21,7 @@ def draw(size, res, x, y, z):
 
     # draw rectlinear polygon in top right corner
     dr.rectangle(((scale-draw_x,scale-draw_y),(scale,0)), fill="green")
-    dr.rectangle(((scale-(scale-draw_y),0),(scale,draw_x)), fill="yellow")
+    dr.rectangle(((scale-(scale-draw_y),0),(scale,draw_x)), fill="green")
 
     # draw splitted pieces
     up_start = (0,0)
@@ -30,7 +30,7 @@ def draw(size, res, x, y, z):
     count = 0
     old = None
     col_finished = False
-    for i in range(3,len(res)):
+    for i in range(2,len(res)):
         height = scale_factor*res[i].height
         width = scale_factor*res[i].width
         long_site = height if height > width else width
@@ -38,7 +38,7 @@ def draw(size, res, x, y, z):
         color = get_color()
 
         # draw top left corner if anything left to draw there
-        if i % 2 == 1 and count < (z-x)*(z-y):
+        if i % 2 == 0 and count < (z-x)*(z-y):
             potrait = (not abs(up_start[1]+short_site-scale-draw_y) < 0.2) and (not abs(up_start[0]+long_site-scale-draw_x) < 0.2)
             dr.rectangle(((up_start[0], up_start[1]),(up_start[0]+(long_site if potrait else short_site), up_start[1]+(short_site if potrait else long_site))),  fill=color, outline='white')
 

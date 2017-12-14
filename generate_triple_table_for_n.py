@@ -6,9 +6,7 @@ import fractions
 import math
 import matplotlib.pyplot as plt
 import pytablewriter
-import random
 from triple_calcs import calc, Triple
-from draw_triple_picture import draw
 from mpl_toolkits.mplot3d import Axes3D
 
 upper_limit = 1000
@@ -20,7 +18,7 @@ def pythagorean_triple(s, t):
     return (a, b, c)
 
 def upper_bound(s, t):
-    return (2*t+3) + (s-t-1)*1/t
+    return (2*t+2) + (s-t-1)*1/t
 
 def s_t_generator(upper_bound):
     limit = upper_bound + 1
@@ -66,14 +64,9 @@ for s, t in s_t_generator(n+1):
         threshold = True
         writer.value_matrix.append(['THRESHOLD'])
 
-    x,y,z = triple.x, triple.y, triple.z
     count +=1
     sol = calc(triple)
     writer.value_matrix.append([t, s, str(triple), triple.z-triple.y, triple.x%(triple.z-triple.y), len(sol), upper_bound(s,t), triple.x-triple.z+triple.y, (triple.z-triple.x)%(triple.x-triple.z+triple.y)])
-
-    ## draw random some splitup pictures
-    #if random.randint(0,29) == 22 and (z < 1000 and z-y > 5 or z < 10000 and z-y > 30):
-    #    draw(1000, sol, triple.x, triple.y, triple.z)
 
     tuple_result.append((triple.x, triple.y, triple.z, len(sol), triple.z-triple.y,
                          float(100/(triple.x%(triple.z-triple.y))) if triple.x%(triple.z-triple.y) != 0 else 0, t, s,
