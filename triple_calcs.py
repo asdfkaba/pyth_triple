@@ -85,6 +85,8 @@ def _calc(triple):
     # append rect angle form (PICTURE: B)
     solution.append(Rect('B in Picture', triple.x, triple.z-triple.y))
     solution2.append(Rect('B in Picture', triple.x, triple.z-triple.y))
+    solution.append(Rect('B in Picture', triple.x, triple.z-triple.y))
+    solution2.append(Rect('B in Picture', triple.x, triple.z-triple.y))
 
     # missing pieces(2 equal forms with width m=z-x and height n=z-y (PICTURE: C)) which we have to split up to fill rest_of_d.size n^2 with n = x-(z-y))
     # together with rect angle form with minimal possible amount of pieces

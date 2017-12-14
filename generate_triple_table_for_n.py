@@ -1,12 +1,14 @@
 from __future__ import print_function
 from __future__ import division
 import math
+import random
 import argparse
 import fractions
 import math
 import matplotlib.pyplot as plt
 import pytablewriter
 from triple_calcs import calc, Triple
+from draw_triple_picture import draw
 from mpl_toolkits.mplot3d import Axes3D
 
 upper_limit = 1000
@@ -64,8 +66,15 @@ for s, t in s_t_generator(n+1):
         threshold = True
         writer.value_matrix.append(['THRESHOLD'])
 
+    x,y,z = triple.x, triple.y, triple.z
     count +=1
     sol = calc(triple)
+
+    ## draw random some splitup pictures
+    if random.randint(0,29) == 22 and ((t < 3 and z < 1000 and z-y > 1) or (z < 1000 and z-y > 5) or (z < 10000 and z-y > 30)):
+        draw(1000, sol, triple.x, triple.y, triple.z)
+
+
     writer.value_matrix.append([t, s, str(triple), triple.z-triple.y, triple.x%(triple.z-triple.y), len(sol), upper_bound(s,t), triple.x-triple.z+triple.y, (triple.z-triple.x)%(triple.x-triple.z+triple.y)])
 
     tuple_result.append((triple.x, triple.y, triple.z, len(sol), triple.z-triple.y,
